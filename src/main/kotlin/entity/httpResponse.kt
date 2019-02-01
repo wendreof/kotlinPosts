@@ -1,7 +1,3 @@
 package entity
 
-data class HttpResponse
-    (
-    val statusCode: Int,
-    val jsonResponde: String
-)
+data class HttpResponse( val statusCode: Int, val jsonResponse: String )

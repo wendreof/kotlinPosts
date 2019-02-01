@@ -10,7 +10,7 @@ import java.net.URL
 import java.net.URLEncoder
 import java.lang.*
 
-class BaseRepository()
+abstract class BaseRepository()
 {
     fun execute( fullParameters: FullParameters ): HttpResponse
     {
