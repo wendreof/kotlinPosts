@@ -13,44 +13,42 @@ import repository.PostRepository
  * Camada de negócio para carregar postagens
  * Tratamento de lógica de negócio deve ficar centralizada nessa camada
  * */
-class PostBusiness {
-
+class PostBusiness
+{
     /**
      * Carrega lista de postagens
      * */
-    fun getAllPosts(): List<PostEntity> {
-
+    fun getAllPosts() : List < PostEntity >
+    {
         // Configura EndPoint - URL a ser chamada
         val url: String = EndpointConstants.BASE.URL + EndpointConstants.POST.ALL_POSTS
 
         // Monta a classe com as configurações necessárias
-        val fullParameters: FullParameters = FullParameters(url, OperationMethod.GET)
+        val fullParameters: FullParameters = FullParameters( url, OperationMethod.GET )
 
         // Obtém a resposta
-        val response: HttpResponse = PostRepository.getAllPosts(fullParameters)
+        val response: HttpResponse = PostRepository.getAllPosts( fullParameters )
 
         // Faz a conversão e o retorno
-        return Gson().fromJson<List<PostEntity>>(response.jsonResponse, object : TypeToken<List<PostEntity>>() {}.type)
+        return Gson().fromJson< List<PostEntity> >( response.jsonResponse, object : TypeToken<List <PostEntity> >() {}.type )
 
     }
 
     /**
      * Carrega postagem específica de acordo com o Id
      * */
-    fun getSinglePost(id: Int): PostEntity {
-
+    fun getSinglePost( id: Int ): PostEntity
+    {
         // Configura EndPoint - URL a ser chamada
         val url: String = EndpointConstants.BASE.URL + EndpointConstants.POST.SINGLE_POST
 
         // Monta a classe com as configurações necessárias - Dessa vez com parâmetros
-        val fullParameters: FullParameters = FullParameters(url, OperationMethod.GET, mapOf(Pair("id", id.toString())))
+        val fullParameters: FullParameters = FullParameters( url, OperationMethod.GET, mapOf( Pair("id", id.toString()) ))
 
         // Obtém a resposta
-        val response: HttpResponse = PostRepository.getSinglePost(fullParameters)
+        val response: HttpResponse = PostRepository.getSinglePost( fullParameters )
 
         // Faz a conversão e o retorno
-        return Gson().fromJson<List<PostEntity>>(response.jsonResponse, object : TypeToken<List<PostEntity>>() {}.type)[0]
-
+        return Gson().fromJson< List<PostEntity> >( response.jsonResponse, object : TypeToken< List<PostEntity> >() {}.type )[ 0 ]
     }
-
 }
